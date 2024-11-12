@@ -1,0 +1,22 @@
+create view files as from read_json('test-20230813.json', maximum_object_size='1000000000')
+;
+summarize files;
+create table files as from 'Downloads.json';
+summarize files;
+create table files as from 'Downloads.json';
+summarize files;
+select path from files limit 30;
+.maxrows 300
+select path from files;
+select path from files WHERE IsDir;
+create view dirs as select path from files WHERE IsDir;
+create or replace view dirs as select * from files WHERE IsDir;
+select d.path, sum(f.size) size from dirs d join files f on starts_with(f.path, d.dir) group by all;
+select d.path, sum(f.size) size from dirs d join files f on starts_with(f.path, d.path) group by all;
+select * from files WHERE IsDir;
+select d.path, sum(f.size) size from dirs d join files f on starts_with(f.path, d.path) where not f.isdir group by all;
+select d.path, sum(f.size) size from dirs d join files f on starts_with(f.path, d.path) where not f.isdir group by all order by all;
+select d.path, bar(sum(f.size)) size from dirs d join files f on starts_with(f.path, d.path) where not f.isdir group by all order by all;
+create view dir_sum as select d.path, sum(f.size) size from dirs d join files f on starts_with(f.path, d.path) where not f.isdir group by all order by all;
+select path, bar(size) from dir_sum;
+select path, bar(size,0,(select max(size) from dir_sum)) from dir_sum;
