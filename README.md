@@ -1,4 +1,4 @@
-![FSI-Logo.png]
+![FSI](FSI-Logo.png)
 # fsi
 File System Indexer is an attempt to develop a set of tools for answering the question: Why is my disk full?
 
