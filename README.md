@@ -1,6 +1,9 @@
-![FSI](FSI-Logo.png|width=200)
-# fsi
-File System Indexer is an attempt to develop a set of tools for answering the question: Why is my disk full?
+<p align="center">
+   <img src="https://github.com/grantjwc/fsi/blob/main/FSI-Logo.png" width="400">
+</p>>
+
+# File System Indexer
+This is an attempt to develop a set of tools for answering the question: Why is my disk full?
 
 The intital goal is to document the adhoc methodology I've been use and begin to morph it into a simple, re-usable workflow.
 
