@@ -52,8 +52,9 @@ select json_structure(metadata) from files limit 1;
 ```
 With the information displayed, you can access the nested "fields" with:
 ```
-
+select path, name, metadata.atime, metadata.mode from files limit 5;
 ```
+
 # Use Cases
 {include fancy images}
 
