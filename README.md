@@ -25,18 +25,35 @@ The ultimate goal at this point is to have a standardized data model with easy t
     * Convert JSON to parquet
         ```
         duckdb
-        D create view json as from 'data.json';
-        D summarize json;
-        D copy json to 'data.parquet';
+        create view json as from 'data.json';
+        summarize json;
+        copy json to 'data.parquet';
         ```
-    * Load up the parquet into a view/table
-        ```
-        duckdb
-        create view files as from 'data.parquet';
-        summarize files;
-        [do crazy sql...]
-        ```
-        
+* Load up the parquet into a view/table
+    ```
+    duckdb
+    create view files as from 'data.parquet';
+    summarize files;
+    [do crazy sql...]
+    ```
+
+# Experiment with parsing metadata
+Once you've got the "files" view (or table), lets try parsing out the metadata structure which is by default in a single field.
+
+## Extract the JSON structure:
+```
+select json_structure(metadata) from files limit 1;
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                         json_structure(metadata)                                         │
+│                                                   json                                                   │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ {"atime":"VARCHAR","btime":"VARCHAR","gid":"VARCHAR","mode":"VARCHAR","mtime":"VARCHAR","uid":"VARCHAR"} │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+With the information displayed, you can access the nested "fields" with:
+```
+
+```
 # Use Cases
 {include fancy images}
 
