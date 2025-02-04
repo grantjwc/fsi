@@ -11,6 +11,32 @@ At this point its more about having an outline for what to do with helpers along
 
 The ultimate goal at this point is to have a standardized data model with easy to use analytics for typical use cases.
 
+# Quickstart
+* Collect file system info and write to JSON
+    * Download rclone from https://rclone.org/downloads/
+    * Collect data:
+        ```
+        rclone lsjson -MR [source] > [output].json
+        ```
+        * M - metadata: https://rclone.org/docs/#m-metadata
+        * R - recursive
+* Convert to JSON to parquet
+    * Download duckdb from https://duckdb.org/docs/installation
+    * Convert JSON to parquet
+        ```
+        duckdb
+        D create view json as from 'data.json';
+        D summarize json;
+        D copy json to 'data.parquet';
+        ```
+    * Load up the parquet into a view/table
+        ```
+        duckdb
+        create view files as from 'data.parquet';
+        summarize files;
+        [do crazy sql...]
+        ```
+        
 # Use Cases
 {include fancy images}
 
@@ -43,14 +69,7 @@ The ultimate goal at this point is to have a standardized data model with easy t
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
-
-## Usage
-
+Nothing to install yet...
 
 ## Contributing
 
@@ -58,6 +77,3 @@ Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
-
-## License
-
