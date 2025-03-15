@@ -66,9 +66,10 @@ select path, name, metadata.atime, metadata.mode from files limit 5;
     * HDFS
     * S3
     * Tools
-        * NCDU
-        * TDU
-        * RClone
+        * [NCDU](https://dev.yorhel.nl/ncdu)
+        * [TDU](https://github.com/josephpaul0/tdu)
+        * [GDU](https://github.com/dundee/gdu) 
+        * [RClone](https://rclone.org)
         * stat
         ```
          stat -f "%d,%i,%p,%l,%Su,%Sg,%r,%z,%a,%m,%c,%B,%k,%b,%#Xf,%N,%Y,%R" files.db
